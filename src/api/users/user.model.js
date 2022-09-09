@@ -9,6 +9,9 @@ const userSchema = new Schema(
     name: { type: String, required: true },
     age: { type: Number },
     phone: { type: Number },
+    Linkedin:{type:String},
+    Gitplatform:{type:String},
+    Vercel:{type:String},
   },
   {
     timestamps: true,
