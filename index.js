@@ -4,6 +4,9 @@ const cors = require('cors');
 const passport = require('passport');
 require('./src/utils/auth/index');
 const session = require('express-session');
+//CLOUDINARY
+// const cloudinary = require("cloudinary").v2;
+const postsRoutes = require('./src/api/posts/posts.routes');
 const MongoStore = require('connect-mongo');
 const mainRoutes = require('./src/api/main/main.routes');
 const userRoutes = require('./src/api/users/user.routes');
@@ -14,6 +17,14 @@ db.connect();
 const PORT = process.env.PORT;
 
 const app = express();
+
+//CLOUDINARY
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -42,6 +53,8 @@ app.use(passport.session());
 
 app.use('/', mainRoutes);
 app.use('/users', userRoutes);
+
+app.use('/post', postsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
