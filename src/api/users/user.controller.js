@@ -1,4 +1,5 @@
 const passport = require('passport');
+const User = require("./user.model")
 
 const registerPost = (req, res) => {
   
@@ -46,9 +47,21 @@ const test = (req, res) => {
   return res.status(200).json(req.user);
 };
 
+  const getUsers = async (req, res, next) =>{
+    try{
+      const {id} = req.params;
+      const users = await User.findById(id).populate('posts');
+      return res.statur(200).json(users);
+    } catch(error){
+      return res.status(500).json(error);
+    }
+
+  }
+
 module.exports = {
   registerPost,
   loginPost,
   logoutPost,
   test,
+  getUsers
 }

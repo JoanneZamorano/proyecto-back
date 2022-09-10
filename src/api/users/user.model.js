@@ -12,6 +12,7 @@ const userSchema = new Schema(
     Linkedin:{type:String},
     Gitplatform:{type:String},
     Vercel:{type:String},
+    posts:[{type: Schema.Types.ObjectId, ref: "Post"}]
   },
   {
     timestamps: true,
