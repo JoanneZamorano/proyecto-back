@@ -8,8 +8,8 @@ router
   .post('/login', controller.loginPost)
   .post('/logout', controller.logoutPost)
   .post('/test', controller.test)
-  .get('/:id',  controller.getUsers);
-
+  .get('/:id',  controller.getUsers)
+  .get('/',  controller.getAllUsers)
 
 
 module.exports = router;
