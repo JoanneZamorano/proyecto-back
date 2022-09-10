@@ -5,14 +5,9 @@ const Post = require('./posts.model');
 
 const postPost = async (req, res, next) =>{
     try {
-<<<<<<< HEAD
-        const posts = await new Post(req.body);
-        
 
-=======
-        const posts = new Post(req.body);
+        const posts = await new Post(req.body);
         console.log(posts.image)
->>>>>>> 38106c5ce60e2b096432a8fbf435d8a69033c9c8
         //Vamos a recoger la imagen del formulario
         if(req.file){
             posts.image = req.file.path

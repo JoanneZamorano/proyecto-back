@@ -47,12 +47,13 @@ const test = (req, res) => {
   return res.status(200).json(req.user);
 };
 
-  const getUsers = async (req, res, next) =>{
+  const getUsers = async (req, res) =>{
     try{
       const {id} = req.params;
-      const users = await User.findById(id).populate('posts');
-      return res.statur(200).json(users);
+      const users = await User.findById(id).populate('posts');      
+      return res.status(200).json(users);
     } catch(error){
+      console.error(error);
       return res.status(500).json(error);
     }
 

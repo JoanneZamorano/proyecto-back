@@ -8,7 +8,7 @@ router
   .post('/login', controller.loginPost)
   .post('/logout', controller.logoutPost)
   .post('/test', controller.test)
-  .post('/:id',  controller.getUsers);
+  .get('/:id',  controller.getUsers);
 
 
 
