@@ -5,7 +5,7 @@ const passport = require('passport');
 require('./src/utils/auth/index');
 const session = require('express-session');
 //CLOUDINARY
-// const cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2;
 const postsRoutes = require('./src/api/posts/posts.routes');
 const MongoStore = require('connect-mongo');
 const mainRoutes = require('./src/api/main/main.routes');
@@ -13,17 +13,18 @@ const userRoutes = require('./src/api/users/user.routes');
 const db = require('./src/utils/database/db');
 dotenv.config();
 db.connect();
+//CLOUDINARY
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const PORT = process.env.PORT;
 
 const app = express();
+// console.log(process.env.CLOUDINARY_API_KEY)
 
-//CLOUDINARY
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
 
 
 app.use(express.json());
