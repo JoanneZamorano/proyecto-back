@@ -11,7 +11,8 @@ age:29,
 phone:666777888,                      
 Linkedin:'',                       
 Gitplatform:'',                             
-Vercel:'',                                  
+Vercel:'',  
+role:"admin"                                
 
 },
 {
@@ -23,6 +24,7 @@ phone:888777888,
 Linkedin:'',                       
 Gitplatform:'',                             
 Vercel:'', 
+role:"admin" 
 
 },
 {
@@ -34,6 +36,7 @@ phone:999777888,
 Linkedin:'',                       
 Gitplatform:'',                             
 Vercel:'',
+role:"admin" 
 
 },
 {
@@ -45,6 +48,7 @@ Vercel:'',
     Linkedin:'',                       
     Gitplatform:'',                             
     Vercel:'',
+    role:"admin" 
     
     }
 ]

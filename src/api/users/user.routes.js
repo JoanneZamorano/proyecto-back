@@ -1,4 +1,5 @@
 const express = require('express');
+const { isAllowed } = require('../../utils/middlewares/auth.middleware');
 const controller = require('./user.controller');
 
 const router = express.Router();
@@ -9,9 +10,9 @@ router
   .post('/logout', controller.logoutPost)
   .post('/test', controller.test)
   .get('/:id',  controller.getUsers)
-  .get('/',  controller.getAllUsers)
+  .get('/',isAllowed(["admin"]),  controller.getAllUsers)
   .put('/update/:id', controller.updateUser)
-  .delete('/delete/:id', controller.deleteUser);
+  .delete('/:id',isAllowed(["admin"]), controller.deleteUser);
 
 
 module.exports = router;
