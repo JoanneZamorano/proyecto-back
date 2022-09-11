@@ -64,8 +64,22 @@ const getUsers = async (req, res) =>{
         const users = await User.find();
         return res.status(200).json(users);
     } catch (error) {
+      console.error(error);
         return res.status(500).json(error);
     }
+}
+
+const updateUser = async (req, res) =>{
+  const user = await User.findById(req.user.id);
+  if(user){
+    const { phone, age, Linkedin, Gitplatform, Vercel} = req.body
+    user.phone = phone;
+    user.age = age;
+    user.Linkedin = Linkedin;
+    user.Gitplatform = Gitplatform;
+    user.Vercel = Vercel;
+
+  }
 }
 
 module.exports = {
@@ -74,5 +88,6 @@ module.exports = {
   logoutPost,
   test,
   getUsers,
-  getAllUsers
+  getAllUsers,
+  updateUser
 }

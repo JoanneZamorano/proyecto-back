@@ -10,6 +10,7 @@ router
   .post('/test', controller.test)
   .get('/:id',  controller.getUsers)
   .get('/',  controller.getAllUsers)
+  .post('/update/:id', controller.updateUser)
 
 
 module.exports = router;
