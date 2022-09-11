@@ -69,18 +69,47 @@ const getUsers = async (req, res) =>{
     }
 }
 
-const updateUser = async (req, res) =>{
-  const user = await User.findById(req.user.id);
-  if(user){
-    const { phone, age, Linkedin, Gitplatform, Vercel} = req.body
-    user.phone = phone;
-    user.age = age;
-    user.Linkedin = Linkedin;
-    user.Gitplatform = Gitplatform;
-    user.Vercel = Vercel;
+// const updateUser = async (req, res) =>{
+//   const user = await User.findById(req.user.id);
+//   if(user){
+//     const { phone, age, Linkedin, Gitplatform, Vercel} = req.body
+//     user.phone = phone;
+//     user.age = age;
+//     user.Linkedin = Linkedin;
+//     user.Gitplatform = Gitplatform;
+//     user.Vercel = Vercel;
 
+//   }
+// }
+
+const updateUser = async (req, res, next) =>{
+  try {
+      const {id} = req.params;
+      const user = new User(req.body);
+      user._id = id;
+      
+      if(req.file){
+          // user.photo = req.file.path;
+          user.phone = req.file.path;
+          user.age = req.file.path;
+          user.Linkedin = req.file.path;
+          user.Gitplatform = req.file.path;
+          user.Vercel = req.file.path;
+      }
+      const userDb = await User.findByIdAndUpdate(id, user);
+      // if(userDb.photo){
+      //     deleteFile(userDb.photo)
+      // }
+      return res.status(200).json(userDb);
+  } catch (error) {
+      return res.status(500).json(error);
   }
 }
+
+
+
+
+
 
 module.exports = {
   registerPost,
