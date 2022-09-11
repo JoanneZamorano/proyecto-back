@@ -90,6 +90,7 @@ const updateUser = async (req, res, next) =>{
       
       if(req.file){
           // user.photo = req.file.path;
+          user.name=req.file.path
           user.phone = req.file.path;
           user.age = req.file.path;
           user.Linkedin = req.file.path;
@@ -101,6 +102,19 @@ const updateUser = async (req, res, next) =>{
       //     deleteFile(userDb.photo)
       // }
       return res.status(200).json(userDb);
+  } catch (error) {
+      return res.status(500).json(error);
+  }
+}
+
+const deleteUser = async (req, res, next) =>{
+  try {
+      const {id} = req.params;
+      const user = await User.findByIdAndDelete(id);
+      // if(user.photo){
+      //     deleteFile(player.photo);
+      // }
+      return res.status(200).json(user);
   } catch (error) {
       return res.status(500).json(error);
   }
@@ -118,5 +132,6 @@ module.exports = {
   test,
   getUsers,
   getAllUsers,
-  updateUser
+  updateUser,
+  deleteUser
 }

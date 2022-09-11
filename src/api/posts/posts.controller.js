@@ -55,4 +55,25 @@ const deletePost = async (req, res, next) =>{
     }
 }
 
-module.exports = { postPost, putPost, deletePost};
+
+const getAllPosts = async (req, res, next) =>{
+    try {
+        const posts = await Post.find();
+        return res.status(200).json(posts);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+const getPost = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const post = await Post.findById(id)
+        return res.status(200).json(post);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+
+module.exports = { postPost, putPost, deletePost,getAllPosts,getPost};
