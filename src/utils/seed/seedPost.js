@@ -1,6 +1,6 @@
 const mongoose=require ('mongoose');
 const db=require ('../database/db');
-const Post = require('../../api/posts/post.model');
+const Post = require('../../api/posts/posts.model.js');
 
 const initialPost=[
 {
@@ -17,7 +17,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(async () => {
-    const allPosts = await Posts.find();
+    const allPosts = await Post.find();
 
     if (allPosts.length) {
       console.log('Eliminando colección de posts...');
@@ -28,7 +28,7 @@ mongoose
   })
   .catch(error => console.log('Error al borrar la colección de la base de datos', error))
   .then(async () => {
-    await Posts.insertMany(initialPost);
+    await Post.insertMany(initialPost);
     console.log('posts añadidos con éxito...');
   })
   .catch(error => console.log('Error al añadir usuario a la base de datos', error))
