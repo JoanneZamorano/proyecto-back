@@ -61,8 +61,10 @@ const getUsers = async (req, res) =>{
   }
   const getAllUsers = async (req, res, next) =>{
     try {
+        console.log(req.user);
         const users = await User.find();
         return res.status(200).json(users);
+
     } catch (error) {
       console.error(error);
         return res.status(500).json(error);
@@ -119,6 +121,15 @@ const deleteUser = async (req, res, next) =>{
       return res.status(500).json(error);
   }
 }
+const checkSessionGet = (req, res, next) => {
+  if(req.user) {
+    req.user.password = null;
+    return res.status(200).json(req.user);
+  } else {
+    return res.status(200).json();
+  }
+}
+
 
 
 
@@ -133,5 +144,6 @@ module.exports = {
   getUsers,
   getAllUsers,
   updateUser,
-  deleteUser
+  deleteUser,
+  checkSessionGet
 }

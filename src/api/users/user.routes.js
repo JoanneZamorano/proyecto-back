@@ -9,8 +9,9 @@ router
   .post('/login', controller.loginPost)
   .post('/logout', controller.logoutPost)
   .post('/test', controller.test)
+  .get('/check-session', controller.checkSessionGet)
   .get('/:id',  controller.getUsers)
-  .get('/',isAllowed(["admin"]),  controller.getAllUsers)
+  .get('/', [isAllowed] , controller.getAllUsers)
   .put('/update/:id', controller.updateUser)
   .delete('/:id',isAllowed(["admin"]), controller.deleteUser);
 
