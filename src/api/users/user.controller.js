@@ -52,7 +52,6 @@ const getUsers = async (req, res) =>{
     try{
       const {id} = req.params;
       const users = await User.findById(id).populate('posts');   
-     console.log(users)
       return res.status(200).json(users);
     } catch(error){
       console.error(error);
@@ -61,7 +60,6 @@ const getUsers = async (req, res) =>{
   }
   const getAllUsers = async (req, res, next) =>{
     try {
-        console.log(req.user);
         const users = await User.find();
         return res.status(200).json(users);
 
@@ -71,19 +69,6 @@ const getUsers = async (req, res) =>{
     }
 }
 
-// const updateUser = async (req, res) =>{
-//   const user = await User.findById(req.user.id);
-//   if(user){
-//     const { phone, age, Linkedin, Gitplatform, Vercel} = req.body
-//     user.phone = phone;
-//     user.age = age;
-//     user.Linkedin = Linkedin;
-//     user.Gitplatform = Gitplatform;
-//     user.Vercel = Vercel;
-
-//   }
-// }
-
 const updateUser = async (req, res, next) =>{
   try {
       const {id} = req.params;
@@ -91,7 +76,6 @@ const updateUser = async (req, res, next) =>{
       user._id = id;
       
       if(req.file){
-          // user.photo = req.file.path;
           user.name=req.file.path
           user.phone = req.file.path;
           user.age = req.file.path;
@@ -100,9 +84,6 @@ const updateUser = async (req, res, next) =>{
           user.Vercel = req.file.path;
       }
       const userDb = await User.findByIdAndUpdate(id, user);
-      // if(userDb.photo){
-      //     deleteFile(userDb.photo)
-      // }
       return res.status(200).json(userDb);
   } catch (error) {
       return res.status(500).json(error);
@@ -113,9 +94,6 @@ const deleteUser = async (req, res, next) =>{
   try {
       const {id} = req.params;
       const user = await User.findByIdAndDelete(id);
-      // if(user.photo){
-      //     deleteFile(player.photo);
-      // }
       return res.status(200).json(user);
   } catch (error) {
       return res.status(500).json(error);

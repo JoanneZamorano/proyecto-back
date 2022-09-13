@@ -78,12 +78,6 @@ mongoose
     });
     console.log("Usuarios añadidos con éxito...");
 
-    // Promise.all(passEncrypt)
-    // .then(async (pepe) => {
-    //   console.log(pepe);
-    //   await User.insertMany(pepe)
-    //
-    // })
   })
   .catch((error) =>
     console.log("Error al añadir usuario a la base de datos", error)

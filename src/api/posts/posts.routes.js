@@ -6,7 +6,7 @@ const { isAllowed } = require('../../utils/middlewares/auth.middleware');
 const postsRoutes = express.Router();
 
 postsRoutes
-    .get('/all',isAllowed(["Admin"]),getAllPosts)
+    .get('/all', getAllPosts) 
     .get('/one/:id',getPost)
     .post('/post',upload.single('image'),  postPost)
     .put('/update/:id',upload.single('image'),  putPost)
